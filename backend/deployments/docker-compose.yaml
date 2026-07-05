@@ -1,0 +1,110 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    env_file:
+      - ../.env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  api-gateway:
+    build:
+      context: ..
+      dockerfile: deployments/Dockerfile.api
+    container_name: api_gateway
+    env_file:
+      - ../.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  doc-service:
+    build:
+      context: ..
+      dockerfile: deployments/Dockerfile.doc
+    container_name: doc_service
+    env_file:
+      - ../.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+
+  sync-service:
+    build:
+      context: ..
+      dockerfile: deployments/Dockerfile.sync
+    container_name: sync_service
+    env_file:
+      - ../.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    ports:
+      - "8082:8082"
+    restart: unless-stopped
+
+  persist-worker:
+    build:
+      context: ..
+      dockerfile: deployments/Dockerfile.persist-worker
+    container_name: persist_worker
+    env_file:
+      - ../.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ../../frontend
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL}
+        NEXT_PUBLIC_DOCS_BASE_URL: ${NEXT_PUBLIC_DOCS_BASE_URL}
+        NEXT_PUBLIC_SYNC_BASE_URL: ${NEXT_PUBLIC_SYNC_BASE_URL}
+    container_name: frontend
+    env_file:
+      - ../.env
+    depends_on:
+      - api-gateway
+      - doc-service
+      - sync-service
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
