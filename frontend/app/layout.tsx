@@ -5,6 +5,7 @@ import {
   Playfair_Display,
 } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -29,6 +30,10 @@ const playfairDisplay = Playfair_Display({
 export const metadata: Metadata = {
   title: "SyncDocs",
   description: "Realtime collaborative document editor",
+  icons: {
+    icon: "/logo/favicon.svg",
+    apple: "/logo/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -39,10 +44,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${ibmPlexSans.variable} ${ibmPlexMono.variable} ${playfairDisplay.variable} h-full antialiased`}
     >
       <body
-        suppressHydrationWarning
         className="min-h-full flex flex-col"
         style={
           {
@@ -55,7 +60,14 @@ export default function RootLayout({
           } as React.CSSProperties
         }
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

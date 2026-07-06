@@ -1,26 +1,73 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --cream: #f7f5f0;
-  --cream-dark: #ede9e0;
-  --ink: #1a1714;
-  --ink-muted: #4a4540;
-  --ink-faint: #8c8680;
-  --accent: #c4501a;
-  --accent-light: #f2ebe5;
-  --accent-hover: #a8421a;
+  /* Base */
+  --cream: #faf8f4;
+  --cream-dark: #f0ece3;
+
+  --ink: #1b1a17;
+  --ink-muted: #5d5650;
+  --ink-faint: #8e877f;
+
+  /* Accent */
+  --accent: #c75b29;
+  --accent-hover: #ab4719;
+  --accent-light: #f5ece6;
+
+  /* Surface */
   --surface: #ffffff;
-  --border: #ddd9d0;
-  --border-strong: #c4bfb5;
+  --surface-elevated: #ffffff;
 
-  --font-editorial: "Playfair Display", Georgia, serif;
-  --font-ui: "IBM Plex Sans", -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+  /* Borders */
+  --border: #ddd8cf;
+  --border-strong: #c6bfb4;
 
-  --radius-sm: 3px;
-  --radius-md: 6px;
-  --radius-lg: 10px;
+  /* Selection */
+  --selection: rgba(199, 91, 41, 0.18);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(25, 25, 25, 0.06);
+  --shadow-lg: 0 15px 45px rgba(25, 25, 25, 0.08);
+
+  /* Page break */
+  --page-break-color: #d6d2ca;
+}
+
+.dark {
+  /* Background */
+  --cream: #0f1115;
+  --cream-dark: #191c22;
+
+  /* Text */
+  --ink: #f5f5f3;
+  --ink-muted: #b7b8bb;
+  --ink-faint: #8b9099;
+
+  /* Accent */
+  --accent: #ff8b52;
+  --accent-hover: #ff9d6d;
+  --accent-light: #2b2019;
+
+  /* Surface */
+  --surface: #171a21;
+  --surface-elevated: #20242d;
+
+  /* Borders */
+  --border: #2d313b;
+  --border-strong: #434856;
+
+  /* Selection */
+  --selection: rgba(255, 139, 82, 0.25);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 25px 60px rgba(0, 0, 0, 0.45);
+
+  /* Page break */
+  --page-break-color: #252933;
 }
 
 @theme inline {
@@ -45,6 +92,9 @@ body {
   overflow-x: hidden;
   background: var(--cream);
   color: var(--ink);
+  transition:
+    background-color 250ms ease,
+    color 250ms ease;
   font-family: var(--font-ui);
   font-size: 15px;
   line-height: 1.6;
@@ -110,7 +160,7 @@ textarea {
 
 .prose-editor code {
   border-radius: var(--radius-sm);
-  background: var(--cream-dark);
+  background: var(--surface-elevated);
   padding: 0.1rem 0.35rem;
   font-family: var(--font-mono);
   font-size: 0.875em;
@@ -121,10 +171,10 @@ textarea {
 .prose-editor pre {
   overflow-x: auto;
   border-radius: var(--radius-md);
-  background: var(--ink);
   padding: 1.25rem 1.5rem;
-  color: var(--cream);
-  border: 1px solid #2a2520;
+  background: #111317;
+  color: #f5f5f5;
+  border: 1px solid var(--border);
 }
 
 .prose-editor pre code {
@@ -198,7 +248,7 @@ textarea {
   top: -1.5rem;
   border-radius: 3px 3px 3px 0;
   padding: 0.15rem 0.45rem;
-  color: white;
+  color: var(--surface);
   font-size: 0.68rem;
   font-family: var(--font-ui);
   font-weight: 500;
@@ -213,7 +263,7 @@ textarea {
 }
 
 ::selection {
-  background: rgba(196, 80, 26, 0.15);
+  background: var(--selection);
 }
 
 /* ─── Page Layout ─── */
@@ -254,14 +304,13 @@ textarea {
   border-radius: var(--radius-sm);
   background: repeating-linear-gradient(
     to bottom,
-    #ffffff 0,
-    #ffffff calc(var(--page-height) - 1px),
+    var(--surface) 0,
+    var(--surface) calc(var(--page-height) - 1px),
     var(--page-break-color) calc(var(--page-height) - 1px),
     var(--page-break-color) var(--page-height)
   );
-  box-shadow:
-    0 1px 3px rgba(26, 23, 20, 0.06),
-    0 12px 40px rgba(26, 23, 20, 0.08);
+
+  box-shadow: var(--shadow-sm), var(--shadow-lg);
 }
 
 .syncdocs-pages .ProseMirror::after {

@@ -44,7 +44,7 @@ export function LoginForm() {
         onClick={() => router.push("/")}
         className="flex lg:hidden items-center gap-3 mb-12"
       >
-        <img src="/favicon.ico" alt="Syncdocs logo" className="h-7 w-7" />
+        <img src="/logo/favicon.svg" alt="Syncdocs logo" className="h-7 w-7" />
         <span
           className="text-xl font-medium"
           style={{

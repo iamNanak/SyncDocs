@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="frontend/app/favicon.ico" alt="Syncdocs logo" width="72" height="72" />
+  <img src="frontend/public/logo/favicon.svg" alt="Syncdocs logo" width="72" height="72" />
 </p>
 
 # Syncdocs

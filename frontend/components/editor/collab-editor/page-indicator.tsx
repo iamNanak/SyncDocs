@@ -1,4 +1,7 @@
-import type { PageLayout, PageStats } from "@/components/editor/collab-editor/constants";
+import type {
+  PageLayout,
+  PageStats,
+} from "@/components/editor/collab-editor/constants";
 import { PAGE_METRICS } from "@/components/editor/collab-editor/constants";
 
 export function PageIndicator({

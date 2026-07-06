@@ -56,7 +56,11 @@ export function DocumentHeader({
           className="flex shrink-0 items-center gap-2 transition-opacity hover:opacity-60"
           style={{ color: "var(--ink)" }}
         >
-          <img src="/favicon.ico" alt="Syncdocs logo" className="h-6 w-6" />
+          <img
+            src="/logo/favicon.svg"
+            alt="Syncdocs logo"
+            className="h-6 w-6"
+          />
           <span
             className="hidden text-base font-medium min-[380px]:inline"
             style={{ fontFamily: "var(--font-display)" }}

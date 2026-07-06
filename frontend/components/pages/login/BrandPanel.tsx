@@ -22,11 +22,7 @@ export function BrandPanel() {
         onClick={() => router.push("/")}
         className="relative z-10 flex items-center gap-3 w-fit"
       >
-        <img
-          src="/favicon.ico"
-          alt="Lattice logo"
-          className="h-7 w-7"
-        />
+        <img src="/logo/favicon.svg" alt="SyncDocs logo" className="h-7 w-7" />
         <span
           className="text-xl font-medium tracking-tight"
           style={{
@@ -34,7 +30,7 @@ export function BrandPanel() {
             color: "var(--cream)",
           }}
         >
-          Lattice
+          SyncDocs
         </span>
       </button>
 
@@ -61,7 +57,7 @@ export function BrandPanel() {
         className="relative z-10 flex items-center gap-6 text-xs"
         style={{ color: "rgba(247,245,240,0.3)" }}
       >
-        <span>© 2026 Lattice</span>
+        <span>© 2026 SyncDocs</span>
         <a
           href="#"
           className="transition-colors hover:text-white"

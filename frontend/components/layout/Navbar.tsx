@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { LogOut, Search } from "lucide-react";
+import { ThemeToggle } from "../ui/theme-toggle";
 
 const logo = (
   <div className="flex items-center gap-3">
-    <img src="/favicon.ico" alt="SyncDocs logo" className="h-7 w-7" />
+    <img src="/logo/favicon.svg" alt="SyncDocs logo" className="h-7 w-7" />
     <span
       className="text-lg font-medium tracking-tight"
       style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
@@ -41,6 +42,7 @@ export function Navbar(props: NavbarProps) {
       >
         {logo}
         <div className="flex shrink-0 items-center gap-4 sm:gap-6">
+          <ThemeToggle />
           <Link
             href="/login"
             className="text-sm transition-colors"

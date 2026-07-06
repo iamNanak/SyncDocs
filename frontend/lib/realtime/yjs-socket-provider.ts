@@ -83,7 +83,7 @@ export class YjsSocketProvider {
       this.broadcastAwarenessClients([this.awareness.clientID]);
     };
 
-    socket.onmessage = event => {
+    socket.onmessage = (event) => {
       this.readMessage(event.data);
     };
 
@@ -103,7 +103,7 @@ export class YjsSocketProvider {
 
   private readMessage(data: ArrayBuffer | Blob | string) {
     if (data instanceof Blob) {
-      data.arrayBuffer().then(buffer => this.readArrayBuffer(buffer));
+      data.arrayBuffer().then((buffer) => this.readArrayBuffer(buffer));
       return;
     }
     if (data instanceof ArrayBuffer) {
@@ -138,7 +138,10 @@ export class YjsSocketProvider {
     this.sendFramedMessage(MESSAGE_DOCUMENT_UPDATE, update);
   };
 
-  private handleAwarenessUpdate = ({ added, updated, removed }: AwarenessUpdate, origin: unknown) => {
+  private handleAwarenessUpdate = (
+    { added, updated, removed }: AwarenessUpdate,
+    origin: unknown,
+  ) => {
     if (origin === "remote") {
       return;
     }
