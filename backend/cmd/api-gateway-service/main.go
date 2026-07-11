@@ -35,6 +35,7 @@ func main() {
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found (or error loading it). Relying on system environment variables.")
 	}
+
 	e := echo.New()
 
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{

@@ -33,16 +33,16 @@ For a deeper write-up, see [docs/flow.md](docs/flow.md). For the full technical 
 
 ## Services
 
-| Service        | Purpose                          | Port | Notes                                           |
-| -------------- | -------------------------------- | ---- | ----------------------------------------------- |
-| api-gateway    | Auth, user search, health checks | 8080 | Swagger UI at `/swagger/index.html`             |
-| doc-service    | Document CRUD and permissions    | 8081 | Swagger UI at `/swagger/index.html`             |
-| sync-service   | WebSocket collaboration          | 8082 | WebSocket endpoint `/ws/:id`                    |
-| persist-worker | Persist CRDT updates             | n/a  | Currently idle — logic merged into sync-service |
-| frontend       | Next.js web app                  | 3000 | UI and editor                                   |
-| postgres       | Primary data store               | 5432 | Users, documents, permissions                   |
-| redis          | Pub/Sub and buffers              | 6379 | Fan-out and persistence queues                  |
-| minio          | Object storage (optional)        | 9000 | Local S3-compatible storage                     |
+| Service        | Purpose                          | Port                      | Notes                                           |
+| -------------- | -------------------------------- | ------------------------- | ----------------------------------------------- | --------------------------- | --- |
+| api-gateway    | Auth, user search, health checks | 8080                      | Swagger UI at `/swagger/index.html`             |
+| doc-service    | Document CRUD and permissions    | 8081                      | Swagger UI at `/swagger/index.html`             |
+| sync-service   | WebSocket collaboration          | 8082                      | WebSocket endpoint `/ws/:id`                    |
+| persist-worker | Persist CRDT updates             | n/a                       | Currently idle — logic merged into sync-service |
+| frontend       | Next.js web app                  | 3000                      | UI and editor                                   |
+| postgres       | Primary data store               | 5432                      | Users, documents, permissions                   |
+| redis          | Pub/Sub and buffers              | 6379                      | Fan-out and persistence queues                  |
+| <!--           | minio                            | Object storage (optional) | 9000                                            | Local S3-compatible storage | --> |
 
 ## Data Model
 
