@@ -67,7 +67,7 @@ export function Navbar(props: NavbarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-10 flex h-14 items-center justify-between px-6 ${props.className ?? ""}`.trim()}
+      className={`absolute top-0 z-10 flex h-14 items-center justify-between px-6 ${props.className ?? ""}`.trim()}
       style={{
         background: "var(--surface)",
         borderBottom: "1px solid var(--border)",

@@ -34,7 +34,7 @@ export function LandingView() {
                   letterSpacing: "0.14em",
                 }}
               >
-                01 / Collaborative writing
+                Writing Together
               </span>
             </div>
 
@@ -47,20 +47,20 @@ export function LandingView() {
                 fontSize: "clamp(3.2rem, 6vw, 4.5rem)",
               }}
             >
-              Editorial craft
+              From first Draft
               <br />
               <em style={{ fontStyle: "italic", color: "var(--accent)" }}>
-                for living
+                to Final Review
               </em>{" "}
-              documents.
+              Together.
             </h1>
 
             <p
               className="text-lg leading-relaxed mb-10 max-w-md"
               style={{ color: "var(--ink-muted)", fontWeight: 300 }}
             >
-              A focused writing environment for teams. Real-time collaboration,
-              clean typography, and documents that feel worth keeping.
+              Collaborative documents built for teams that think, review, and
+              publish together.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -77,7 +77,7 @@ export function LandingView() {
                     "var(--ink)";
                 }}
               >
-                Start writing free
+                Start writing Now
               </Link>
               <Link
                 href="/login"
@@ -90,9 +90,9 @@ export function LandingView() {
               >
                 See a demo
               </Link>
-              <p className="text-xs" style={{ color: "var(--ink-faint)" }}>
+              {/* <p className="text-xs" style={{ color: "var(--ink-faint)" }}>
                 No credit card required
-              </p>
+              </p> */}
             </div>
 
             {/* <p className="mt-4 text-xs" style={{ color: "var(--ink-faint)" }}>
@@ -106,7 +106,7 @@ export function LandingView() {
               className="relative rounded-sm overflow-hidden"
               style={{
                 background: "var(--surface)",
-                border: "1px solid var(--border)",
+                border: "1px  var(--border)",
                 boxShadow:
                   "0 2px 4px rgba(26,23,20,0.04), 0 20px 48px rgba(26,23,20,0.10)",
               }}
@@ -122,34 +122,32 @@ export function LandingView() {
                   background:
                     "linear-gradient(to top, rgba(247,245,240,0.98) 0%, rgba(247,245,240,0) 100%)",
                 }}
-              >
-                <p className="text-xs" style={{ color: "var(--ink-muted)" }}>
-                  Live cursors and presence, available instantly across the
-                  team.
-                </p>
-              </div>
+              ></div>
             </div>
 
             {/* Floating label */}
-            {/* <div
+            <div
               className="absolute -bottom-4 -left-4 px-4 py-2 rounded-sm"
               style={{
                 background: "var(--surface)",
                 border: "1px solid var(--border)",
                 boxShadow: "0 4px 12px rgba(26,23,20,0.08)",
               }}
-            > */}
-            {/* <span
+            >
+              <span
                 className="text-xs font-medium"
-                style={{ color: "var(--ink-muted)", fontFamily: "var(--font-system-mono)" }}
+                style={{
+                  color: "var(--ink-muted)",
+                  fontFamily: "var(--font-system-mono)",
+                }}
               >
                 Realtime sync
-              </span> */}
-            {/* <span
+              </span>
+              <span
                 className="ml-2 inline-block h-1.5 w-1.5 rounded-full align-middle"
                 style={{ background: "#4CAF50" }}
               />
-            </div> */}
+            </div>
           </div>
         </section>
 
@@ -158,11 +156,11 @@ export function LandingView() {
           className="mt-24 pt-12"
           style={{ borderTop: "1px solid var(--border)" }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-0">
             {[
               {
                 n: "01",
-                title: "Real-time editing",
+                title: "Live Collaboration",
                 body: "See every keystroke as it happens. Presence indicators show exactly who is writing where.",
               },
               {
@@ -172,14 +170,19 @@ export function LandingView() {
               },
               {
                 n: "03",
-                title: "Granular sharing",
-                body: "Owner, editor, viewer roles. Invite collaborators by email with a single search.",
+                title: "Granular Permission",
+                body: "Control who can view, comment, or edit. Invite collaborators by email with a single search.",
+              },
+              {
+                n: "04",
+                title: "Rich Text Editor",
+                body: "Beautiful writing with zero distractions.",
               },
             ].map((f, i) => (
               <div
                 key={f.n}
                 className={`py-8 md:pr-10 ${i > 0 ? "md:pl-10" : ""} ${
-                  i < 2 ? "border-b md:border-b-0 md:border-r" : ""
+                  i < 3 ? "border-b md:border-b-0 md:border-r" : ""
                 }`}
                 style={{
                   borderColor: "var(--border)",
@@ -290,8 +293,9 @@ export function LandingView() {
                   color: "var(--ink-muted)",
                 }}
               >
-                "SyncDocs finally gives us a doc workflow that feels calm.
-                Sharing, review, and syncing happen without distractions."
+                Share documents, review ideas, and stay perfectly in
+                sync—powered by fast, reliable collaboration that feels
+                effortless with SyncDoc.
               </p>
               <p className="text-xs" style={{ color: "var(--ink-faint)" }}>
                 Nanak Gupta, Creator

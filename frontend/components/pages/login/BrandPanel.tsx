@@ -43,13 +43,11 @@ export function BrandPanel() {
             fontStyle: "italic",
           }}
         >
-          "Writing is thinking. To write well is to think clearly."
+          "Great things are not done by one person. They're done by a team of
+          people."
         </div>
-        <p
-          className="text-sm font-light"
-          style={{ color: "rgba(247,245,240,0.4)" }}
-        >
-          — David McCullough
+        <p className="text-sm font-light" style={{ color: "var(--cream)" }}>
+          — Steve Jobs
         </p>
       </div>
 

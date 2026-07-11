@@ -4,7 +4,12 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Plus, FileText, PenLine, Clock } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ApiError, createDocument, getCurrentUser, listDocuments } from "@/lib/api";
+import {
+  ApiError,
+  createDocument,
+  getCurrentUser,
+  listDocuments,
+} from "@/lib/api";
 import { useAuthStore } from "@/store/auth";
 import type { DocumentSummary, User } from "@/types";
 import { Navbar } from "@/components/layout/Navbar";
@@ -63,9 +68,9 @@ export function DashboardView() {
   const filteredDocs = useMemo(
     () =>
       documents.filter((doc) =>
-        doc.title.toLowerCase().includes(query.toLowerCase())
+        doc.title.toLowerCase().includes(query.toLowerCase()),
       ),
-    [documents, query]
+    [documents, query],
   );
 
   const totalPages = Math.max(1, Math.ceil(filteredDocs.length / pageSize));
@@ -187,15 +192,15 @@ export function DashboardView() {
                 {loading
                   ? "Fetching your workspace…"
                   : filteredDocs.length === 0
-                  ? "Create a document to start collaborating."
-                  : "Pick up where you left off."}
+                    ? "Create a document to start collaborating."
+                    : "Pick up where you left off."}
               </p>
             </div>
-             <p className="text-sm" style={{ color: "var(--ink-muted)" }}>
-                {filteredDocs.length === 0
-                  ? "No documents yet"
-                  : `Showing ${startIndex + 1}-${endIndex} of ${filteredDocs.length}`}
-              </p>
+            <p className="text-sm" style={{ color: "var(--ink-muted)" }}>
+              {filteredDocs.length === 0
+                ? "No documents yet"
+                : `Showing ${startIndex + 1}-${endIndex} of ${filteredDocs.length}`}
+            </p>
           </div>
 
           {loading ? (
@@ -233,7 +238,6 @@ export function DashboardView() {
               <p className="text-xs" style={{ color: "var(--ink-faint)" }}>
                 Create your first document above
               </p>
-
 
               <button
                 type="button"
@@ -351,7 +355,10 @@ export function DashboardView() {
                         className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100"
                         style={{ background: "rgba(247,245,240,0.7)" }}
                       >
-                        <FileText className="h-6 w-6" style={{ color: "var(--ink)" }} />
+                        <FileText
+                          className="h-6 w-6"
+                          style={{ color: "var(--ink)" }}
+                        />
                       </div>
                     </div>
                     <div>
@@ -367,11 +374,14 @@ export function DashboardView() {
                       >
                         <Clock className="h-3 w-3 shrink-0" />
                         <span>
-                          {new Date(doc.updated_at).toLocaleDateString(undefined, {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
+                          {new Date(doc.updated_at).toLocaleDateString(
+                            undefined,
+                            {
+                              month: "short",
+                              day: "numeric",
+                              year: "numeric",
+                            },
+                          )}
                         </span>
                       </div>
                     </div>
@@ -382,7 +392,10 @@ export function DashboardView() {
               {totalPages > 1 && (
                 <div
                   className="mt-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
-                  style={{ borderTop: "1px solid var(--border)", paddingTop: 16 }}
+                  style={{
+                    borderTop: "1px solid var(--border)",
+                    paddingTop: 16,
+                  }}
                 >
                   <p className="text-xs" style={{ color: "var(--ink-faint)" }}>
                     Page {clampedPage} of {totalPages}
@@ -395,7 +408,9 @@ export function DashboardView() {
                       className="h-9 px-4 text-xs font-medium rounded-sm transition-colors"
                       style={{
                         background:
-                          clampedPage === 1 ? "var(--cream-dark)" : "var(--surface)",
+                          clampedPage === 1
+                            ? "var(--cream-dark)"
+                            : "var(--surface)",
                         color: "var(--ink)",
                         border: "1px solid var(--border)",
                         cursor: clampedPage === 1 ? "not-allowed" : "pointer",
@@ -414,13 +429,17 @@ export function DashboardView() {
                             ? "var(--cream-dark)"
                             : "var(--ink)",
                         color:
-                          clampedPage === totalPages ? "var(--ink-faint)" : "var(--cream)",
+                          clampedPage === totalPages
+                            ? "var(--ink-faint)"
+                            : "var(--cream)",
                         border:
                           clampedPage === totalPages
                             ? "1px solid var(--border)"
                             : "1px solid var(--ink)",
                         cursor:
-                          clampedPage === totalPages ? "not-allowed" : "pointer",
+                          clampedPage === totalPages
+                            ? "not-allowed"
+                            : "pointer",
                       }}
                     >
                       Next
