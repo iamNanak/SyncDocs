@@ -38,55 +38,55 @@ The core technical goal: **conflict-free multi-user editing with zero data loss*
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         CLIENT (Browser)                         │
+│                         CLIENT (Browser)                        │
 │  Next.js App + ProseMirror + y-prosemirror + Yjs                │
-│                                                                  │
-│  Manages local CRDT state, sends binary updates via WS           │
+│                                                                 │
+│  Manages local CRDT state, sends binary updates via WS          │
 └──────────────┬──────────────────────────┬───────────────────────┘
                │ WebSocket /ws/:id         │ REST API calls
                │                           │
-       ┌───────▼────────┐          ┌──────▼───────────┐
-       │  api-gateway   │          │   doc-service    │
-       │   :8080        │          │    :8081         │
-       │                 │          │                   │
-       │ • JWT issue      │          │ • Doc CRUD        │
-       │ • User search    │          │ • Permissions     │
-       │ • Rate limit     │          │ • Metadata        │
+       ┌───────▼─────────┐          ┌──────▼───────────┐
+       │  api-gateway    │          │   doc-service    │
+       │   :8080         │          │    :8081         │
+       │                 │          │                  │
+       │ • JWT issue     │          │ • Doc CRUD       │
+       │ • User search   │          │ • Permissions    │
+       │ • Rate limit    │          │ • Metadata       │
        └───────┬─────────┘          └──────┬───────────┘
-               │                            │
-               └────────────┬───────────────┘
+               │                           │
+               └────────────┬──────────────┘
                             │ shared Postgres
                             ▼
                      ┌──────────────┐
                      │  Postgres    │
                      │   :5432      │
-                     │               │
-                     │ • users       │
-                     │ • documents   │
-                     │ • perms       │
-                     │ • updates     │
+                     │              │
+                     │ • users      │
+                     │ • documents  │
+                     │ • perms      │
+                     │ • updates    │
                      └──────────────┘
                             ▲
                             │ direct writes
-                     ┌──────┴──────────┐
-                     │  sync-service   │
-                     │    :8082        │
-                     │                   │
+                     ┌──────┴───────────┐
+                     │  sync-service    │ 
+                     │    :8082         │
+                     │                  │
                      │ • WebSocket hub  │
                      │ • Rooms per doc  │
                      │ • persistUpdate()│  ← THE CRITICAL PATH
                      │ • replayUpdates()│
-                     └──────┬──────────┘
+                     └──────┬───────────┘
                             │
                             │ cross-instance fan-out
                             ▼
                      ┌──────────────┐
                      │    Redis     │
                      │    :6379     │
-                     │               │
-                     │ • Pub/Sub     │
-                     │ • buffer:doc  │ (legacy, low priority now)
-                     │ • dirty_docs  │ (legacy)
+                     │              │
+                     │ • Pub/Sub    │
+                     │ • buffer:doc │ (legacy, low priority now)
+                     │ • dirty_docs │ (legacy)
                      └──────────────┘
 ```
 
