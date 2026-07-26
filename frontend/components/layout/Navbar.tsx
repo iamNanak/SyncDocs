@@ -37,7 +37,7 @@ export function Navbar(props: NavbarProps) {
   if (props.variant === "landing") {
     return (
       <header
-        className={`flex h-16 items-center justify-between gap-4 px-4 sm:px-8 ${props.className ?? ""}`.trim()}
+        className={`relative flex h-16 items-center justify-between gap-4 px-4 sm:px-8 ${props.className ?? ""}`.trim()}
         style={{ borderBottom: "1px solid var(--border)" }}
       >
         {logo}
@@ -67,7 +67,7 @@ export function Navbar(props: NavbarProps) {
 
   return (
     <header
-      className={`absolute top-0 z-10 flex h-14 items-center justify-between px-6 ${props.className ?? ""}`.trim()}
+      className={`relative top-0 z-10 flex h-14 items-center justify-between px-6 ${props.className ?? ""}`.trim()}
       style={{
         background: "var(--surface)",
         borderBottom: "1px solid var(--border)",
